@@ -1,6 +1,9 @@
 import 'package:flutter/material.dart';
+import 'package:projectwork/index.dart';
 
 class LoginScreen extends StatefulWidget {
+  // page id
+  static const String id = BrandStrings.loginScreen;
   const LoginScreen({Key? key}) : super(key: key);
 
   @override
@@ -39,7 +42,9 @@ class LoginScreenState extends State<LoginScreen> {
                   children: [
                     Container(
                       margin: const EdgeInsets.only(top: 50),
-                      child: Image.asset("assets/images/app_logo.png"),
+                      child: Image.asset(
+                        Assets.imagesAppLogo,
+                      ),
                       height: 90,
                       width: 90,
                     ),
