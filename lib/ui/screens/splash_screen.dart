@@ -13,26 +13,13 @@ class SplashScreen extends StatefulWidget {
 }
 
 class InitState extends State<SplashScreen> {
-  // page id
-  final String id = 'splash_screen';
   @override
-  noSuchMethod(Invocation invocation) {
-    startTimer();
-    return super.noSuchMethod(invocation);
-  }
-
-  startTimer() async {
-    Duration duration = const Duration(seconds: 3);
-    return Timer(duration, loginRoute);
-  }
-
-  loginRoute() {
-    Navigator.pushReplacement(
-      context,
-      MaterialPageRoute(
-        builder: (context) => const LoginScreen(),
-      ),
-    );
+  initState() {
+    super.initState();
+    // delay for 3 seconds and navigate to the login screen
+    Future.delayed(const Duration(seconds: 3), () {
+      Navigator.pushReplacementNamed(context, LoginScreen.id);
+    });
   }
 
   @override
