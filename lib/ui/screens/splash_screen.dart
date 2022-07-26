@@ -1,9 +1,11 @@
 import 'dart:async';
 
 import 'package:flutter/material.dart';
-import 'package:projectwork/login_screen.dart';
+import 'package:projectwork/index.dart';
 
 class SplashScreen extends StatefulWidget {
+  // page id
+  static const String id = BrandStrings.splashScreen;
   const SplashScreen({Key? key}) : super(key: key);
 
   @override
@@ -11,6 +13,8 @@ class SplashScreen extends StatefulWidget {
 }
 
 class InitState extends State<SplashScreen> {
+  // page id
+  final String id = 'splash_screen';
   @override
   noSuchMethod(Invocation invocation) {
     startTimer();
@@ -33,10 +37,6 @@ class InitState extends State<SplashScreen> {
 
   @override
   Widget build(BuildContext context) {
-    return initWidget();
-  }
-
-  Widget initWidget() {
     return Scaffold(
       backgroundColor: Colors.cyan.shade400,
       body: Stack(
@@ -56,7 +56,7 @@ class InitState extends State<SplashScreen> {
           ),
           Center(
             child: Image.asset(
-              "assets/images/app_logo.png",
+              Assets.imagesAppLogo,
             ),
           )
         ],
