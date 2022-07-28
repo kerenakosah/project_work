@@ -74,6 +74,12 @@ class BrandColors {
   static get kColorTextSemiLight => const Color(0xFF737373);
   static get kColorTextDark => const Color(0xFF292828);
 
+  static get kButtonColor => const Color(0xFFB40284);
+  static get kPrimaryBackgroundColor => const Color(0xFFBD34C5);
+  static get kSplashBackgroundColor => const Color(0xFFBFFFFF);
+  static get kStrokeColor => const Color(0xFFBC7C7C);
+  static get kTextColor => const Color(0xFFBFFFFF);
+
   // add your custom colors
 
 }

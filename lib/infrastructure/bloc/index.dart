@@ -1,1 +1,1 @@
-// add export contents here
+export 'theme_bloc.dart';

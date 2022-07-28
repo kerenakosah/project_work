@@ -1,17 +1,22 @@
 import 'package:animated_theme_switcher/animated_theme_switcher.dart';
+import 'package:firebase_core/firebase_core.dart';
 import 'package:flutter/material.dart';
+import 'package:hooks_riverpod/hooks_riverpod.dart';
 import 'package:projectwork/index.dart';
 
-void main() async {
+Future<void> main() async {
   WidgetsFlutterBinding.ensureInitialized();
+  await Firebase.initializeApp();
   final themeService = await ThemeService.instance;
   dynamic initTheme = themeService.initial;
   runApp(
-    CustomApp(theme: initTheme),
+    ProviderScope(
+      child: CustomApp(theme: initTheme),
+    ),
   );
 }
 
-class CustomApp extends StatelessWidget {
+class CustomApp extends ConsumerStatefulWidget {
   final ThemeData theme;
 
   const CustomApp({
@@ -20,9 +25,25 @@ class CustomApp extends StatelessWidget {
   }) : super(key: key);
 
   @override
+  ConsumerState<ConsumerStatefulWidget> createState() => CustomAppState();
+}
+
+class CustomAppState extends ConsumerState<CustomApp> {
+  @override
   Widget build(BuildContext context) {
+    // get a reference to the themeProvider
+    final themeController = ref.watch(themeProvider);
+    // if the widget.theme is dark
+    if (widget.theme == darkTheme) {
+      // set the theme to dark
+      themeController.activeTheme = true;
+    } else {
+      // set the theme to light
+      themeController.activeTheme = false;
+    }
+
     return ThemeProvider(
-      initTheme: theme,
+      initTheme: widget.theme,
       builder: (_, theme) => MaterialApp(
         title: BrandStrings.appName.toString(),
         debugShowCheckedModeBanner: false,
@@ -30,9 +51,15 @@ class CustomApp extends StatelessWidget {
         themeMode: ThemeMode.light,
         home: const SplashScreen(),
         routes: {
+          // screens
           SplashScreen.id: (context) => const SplashScreen(),
-          LoginScreen.id: (context) => const LoginScreen(),
           HomeScreen.id: (context) => const HomeScreen(),
+          BoardingScreen.id: (context) => const BoardingScreen(),
+          // pages
+          HomePage.id: (context) => const HomePage(),
+          ProfilePage.id: (context) => const ProfilePage(),
+          SettingsPage.id: (context) => const SettingsPage(),
+          PatientPage.id: (context) => const PatientPage(),
         },
       ),
     );

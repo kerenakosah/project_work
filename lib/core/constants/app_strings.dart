@@ -4,13 +4,20 @@ class BrandStrings {
   static get appName => "My App"; // add your app name here
   static get obscuringCharacter => "*"; // obscuring text
 
+  // texts
+  static const String getStarted = "Get Started";
+
   //routes id
   static const String splashScreen = "splash_screen";
   static const String homeScreen = "home_screen";
-  static const String profileScreen = "profile_screen";
-  static const String settingsScreen = "settings_screen";
-  static const String accountsPage = "accounts_page";
   static const String loginScreen = "login_screen";
+  static const String boardingScreen = "boarding_screen";
+
+  // pages
+  static const String homePage = "home_page";
+  static const String profilePage = "profile_page";
+  static const String settingsPage = "settings_page";
+  static const String patientPage = "patient_page";
 
   //error messages
   static get userName => "Enter your username";

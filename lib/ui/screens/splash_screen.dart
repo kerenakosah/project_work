@@ -18,7 +18,7 @@ class InitState extends State<SplashScreen> {
     super.initState();
     // delay for 3 seconds and navigate to the login screen
     Future.delayed(const Duration(seconds: 3), () {
-      Navigator.pushReplacementNamed(context, LoginScreen.id);
+      Navigator.pushReplacementNamed(context, BoardingScreen.id);
     });
   }
 

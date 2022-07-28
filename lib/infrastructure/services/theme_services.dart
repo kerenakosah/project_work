@@ -42,7 +42,7 @@ class ThemeService {
   }
 
   save(String newThemeName) {
-    var currentThemeName = prefs.getString('theme');
+    String? currentThemeName = prefs.getString('theme');
     if (currentThemeName != null) {
       prefs.setString('previousThemeName', currentThemeName);
     }

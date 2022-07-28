@@ -6,17 +6,18 @@ ThemeData lightTheme = BrandTheme.lightThemeData;
 ThemeData darkTheme = BrandTheme.darkThemeData;
 
 ThemeData pinkTheme = lightTheme.copyWith(
-    primaryColor: const Color(0xFFF49FB6),
-    scaffoldBackgroundColor: const Color(0xFFFAF8F0),
-    floatingActionButtonTheme: const FloatingActionButtonThemeData(
-      foregroundColor: Color(0xFF24737c),
-      backgroundColor: Color(0xFFA6E0DE),
+  primaryColor: const Color(0xFFF49FB6),
+  scaffoldBackgroundColor: const Color(0xFFFAF8F0),
+  floatingActionButtonTheme: const FloatingActionButtonThemeData(
+    foregroundColor: Color(0xFF24737c),
+    backgroundColor: Color(0xFFA6E0DE),
+  ),
+  textTheme: const TextTheme(
+    bodyText1: TextStyle(
+      color: Colors.black87,
     ),
-    textTheme: const TextTheme(
-      bodyText1: TextStyle(
-        color: Colors.black87,
-      ),
-    ));
+  ),
+);
 
 ThemeData halloweenTheme = lightTheme.copyWith(
   primaryColor: const Color(0xFF55705A),
