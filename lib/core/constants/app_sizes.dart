@@ -1,6 +1,12 @@
-class BrandSizes {
+import 'package:flutter_screenutil/flutter_screenutil.dart';
 
+class BrandSizes {
   BrandSizes._();
+
+  static const designHeight = 895.0;
+  static const designWidth = 414.0;
+  static get screenHeight => ScreenUtil().screenHeight;
+  static get screenWidth => ScreenUtil().screenWidth;
 
   static const double size_600 = 600.0;
   static const double size_500 = 500.0;

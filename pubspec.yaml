@@ -19,6 +19,15 @@ dependencies:
   animated_theme_switcher: ^2.0.6
   flutter_hooks: ^0.18.5+1
   hooks_riverpod: ^1.0.4
+  auto_size_text: ^3.0.0
+  line_awesome_flutter: ^2.0.0
+  google_maps_flutter: ^2.1.10
+  geolocator: ^9.0.1
+  another_flushbar: ^1.10.29
+  flutter_polyline_points: ^1.0.0
+  custom_info_window: ^1.0.1
+  flutter_screenutil: ^5.5.3+2
+  flutter_svg: ^1.1.1+1
 
   # firebase
   firebase_core: ^1.20.0
@@ -37,4 +46,6 @@ flutter:
 
   assets:
   - assets/images/
+  - assets/icons/
+  - assets/svg/
 

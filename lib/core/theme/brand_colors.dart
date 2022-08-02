@@ -25,11 +25,16 @@ class BrandColors {
   static const Color errorRed = Color(0xFFFF2019);
   static const Color nimbus = Color(0xFFF6C350);
 
+  static get kColorHomeView => Colors.purpleAccent[700];
+  static get kColorPatientsView => Colors.red;
+  static get kColorProfileView => const Color(0xff009a88);
+
   // brand colors
   static get baseColor => const Color(0xffF88C90);
   static get kGoldTextColor => const Color(0xffFFA726);
   static get kDimText => const Color(0xff979797);
   static get kColorBackground => const Color(0xffFFFFFF);
+  static get kColorWhiteAccent => const Color(0xFFFCFDFD);
   static get kColorDimBlue => const Color(0xff98C7C0);
   static get kBrownColor => const Color(0xffAC4F70);
   static get kTealColor => const Color(0xff208F8A);
@@ -73,6 +78,12 @@ class BrandColors {
   static get kColorTextLight => const Color(0xFF918D8D);
   static get kColorTextSemiLight => const Color(0xFF737373);
   static get kColorTextDark => const Color(0xFF292828);
+
+  static get kButtonColor => const Color(0xFFB40284);
+  static get kPrimaryBackgroundColor => const Color(0xFFBD34C5);
+  static get kSplashBackgroundColor => const Color(0xFFBFFFFF);
+  static get kStrokeColor => const Color(0xFFBC7C7C);
+  static get kTextColor => const Color(0xFFBFFFFF);
 
   // add your custom colors
 
