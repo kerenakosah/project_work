@@ -14,7 +14,7 @@ class BoardingScreen extends ConsumerStatefulWidget {
 class BoardingScreenState extends ConsumerState<BoardingScreen> {
   int _pageState = 0;
 
-  Color _backgroundColor = BrandColors.kSplashBackgroundColor;
+  Color _backgroundColor = BrandColors.kGrainyBackground;
   Color _textColor = BrandColors.kButtonColor;
 
   double _windowWidth = 0;
@@ -41,7 +41,7 @@ class BoardingScreenState extends ConsumerState<BoardingScreen> {
 
     switch (_pageState) {
       case 0:
-        _backgroundColor = BrandColors.kSplashBackgroundColor;
+        _backgroundColor = BrandColors.kGrainyBackground;
         _textColor = BrandColors.kButtonColor;
         _loginYOffset = _windowHeight;
         _loginXOffset = 0;

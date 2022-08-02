@@ -1,4 +1,5 @@
 import 'package:flutter/material.dart';
+import 'package:google_fonts/google_fonts.dart';
 import 'package:projectwork/index.dart';
 
 class IntroText extends StatelessWidget {
@@ -22,10 +23,10 @@ class IntroText extends StatelessWidget {
               onTap: onTap,
               child: Text(
                 AppData.title,
-                style: TextStyle(
+                style: GoogleFonts.nunito(
                   color: textColor,
-                  fontFamily: "Nunito-Bold",
                   fontSize: 28.0,
+                  fontWeight: FontWeight.w900,
                 ),
               ),
             ),
@@ -38,7 +39,7 @@ class IntroText extends StatelessWidget {
             child: Text(
               AppData.descriptionText,
               textAlign: TextAlign.center,
-              style: TextStyle(
+              style: GoogleFonts.nunito(
                 color: textColor,
               ),
             ),

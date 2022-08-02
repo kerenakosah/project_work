@@ -2,6 +2,9 @@
 class Assets {
   Assets._();
 
+  static const String iconsDarkTheme = 'assets/icons/dark_theme.svg';
+  static const String iconsLightTheme = 'assets/icons/light_theme.svg';
   static const String imagesAppLogo = 'assets/images/app_logo.png';
   static const String imagesSplashBg = 'assets/images/splash_bg.png';
+  static const String svgAccount = 'assets/svg/account.svg';
 }

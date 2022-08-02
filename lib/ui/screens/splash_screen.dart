@@ -25,7 +25,6 @@ class InitState extends State<SplashScreen> {
   @override
   Widget build(BuildContext context) {
     return Scaffold(
-      backgroundColor: Colors.cyan.shade400,
       body: Stack(
         children: [
           Container(

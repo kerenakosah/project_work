@@ -1,6 +1,6 @@
 class AppData {
   const AppData._();
 
-  static const title = "Learn Free";
-  static const descriptionText = "We make learning easy. Join Tvac Studio to learn flutter for free on YouTube.";
+  static const title = "Lorem Ipsum";
+  static const descriptionText = "Lorem ipsum dolor sit amet, Lorem ipsum dolor sit amet, Lorem ipsum dolor sit amet.";
 }

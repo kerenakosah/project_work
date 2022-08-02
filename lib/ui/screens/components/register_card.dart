@@ -34,48 +34,67 @@ class RegisterCard extends StatelessWidget {
         ),
         color: BrandColors.kSplashBackgroundColor,
       ),
-      padding: const EdgeInsets.all(12.0),
+      padding: const EdgeInsets.all(8.0),
       child: Padding(
-        padding: const EdgeInsets.all(30.0),
-        child: Column(
-          mainAxisAlignment: MainAxisAlignment.spaceBetween,
-          children: <Widget>[
-            //input fields
-            Column(
-              children: const <Widget>[
-                InputField(
-                  title: "Email Address",
-                  icon: Icons.email,
-                ),
-                SizedBox(height: 20.0),
-                InputField(
-                  title: "Password",
-                  icon: Icons.vpn_key,
-                ),
-              ],
-            ),
+        padding: const EdgeInsets.all(20.0),
+        child: SingleChildScrollView(
+          child: Column(
+            mainAxisAlignment: MainAxisAlignment.spaceBetween,
+            children: <Widget>[
+              //input fields
+              Column(
+                children: const <Widget>[
+                  InputField(
+                    title: "First Name",
+                    icon: Icons.person,
+                  ),
+                  SizedBox(height: 20.0),
+                  InputField(
+                    title: "Last Name",
+                    icon: Icons.person,
+                  ),
+                  SizedBox(height: 20.0),
+                  InputField(
+                    title: "Email Address",
+                    icon: Icons.email,
+                  ),
+                  SizedBox(height: 20.0),
+                  InputField(
+                    title: "Phone Number",
+                    icon: Icons.call,
+                  ),
+                  SizedBox(height: 20.0),
+                  InputField(
+                    title: "Password",
+                    icon: Icons.vpn_key,
+                  ),
+                  SizedBox(height: 20.0),
+                ],
+              ),
 
-            // buttons
-            Column(
-              children: <Widget>[
-                GestureDetector(
-                  onTap: () {
-                    Navigator.pushNamedAndRemoveUntil(context, ProfilePage.id, (route) => false);
-                  },
-                  child: const BrandButton(
-                    title: "Create Account",
+              const SizedBox(height: 20.0),
+              // buttons
+              Column(
+                children: <Widget>[
+                  GestureDetector(
+                    onTap: () {
+                      Navigator.pushNamedAndRemoveUntil(context, ProfilePage.id, (route) => false);
+                    },
+                    child: const BrandButton(
+                      title: "Create Account",
+                    ),
                   ),
-                ),
-                const SizedBox(height: 20.0),
-                GestureDetector(
-                  onTap: onTap,
-                  child: const TransparentButton(
-                    title: "Log In",
+                  const SizedBox(height: 20.0),
+                  GestureDetector(
+                    onTap: onTap,
+                    child: const TransparentButton(
+                      title: "Log In",
+                    ),
                   ),
-                ),
-              ],
-            ),
-          ],
+                ],
+              ),
+            ],
+          ),
         ),
       ),
     );
