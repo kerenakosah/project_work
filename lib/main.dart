@@ -7,21 +7,17 @@ import 'package:projectwork/index.dart';
 Future<void> main() async {
   WidgetsFlutterBinding.ensureInitialized();
   // await Firebase.initializeApp();
-  final themeService = await ThemeService.instance;
-  dynamic initTheme = themeService.initial;
+
   runApp(
-    ProviderScope(
-      child: CustomApp(theme: initTheme),
+    const ProviderScope(
+      child: CustomApp(),
     ),
   );
 }
 
 class CustomApp extends ConsumerStatefulWidget {
-  final ThemeData theme;
-
   const CustomApp({
     Key? key,
-    required this.theme,
   }) : super(key: key);
 
   @override
@@ -30,29 +26,26 @@ class CustomApp extends ConsumerStatefulWidget {
 
 class CustomAppState extends ConsumerState<CustomApp> {
   @override
+  void initState() {
+    ref.read(themeProvider.notifier).load(); // load the theme from themeController
+    super.initState();
+  }
+
+  @override
   Widget build(BuildContext context) {
-    // get a reference to the themeProvider
-    final themeController = ref.watch(themeProvider);
-    // if the widget.theme is dark
-    if (widget.theme == darkTheme) {
-      // set the theme to dark
-      themeController.activeTheme = true;
-    } else {
-      // set the theme to light
-      themeController.activeTheme = false;
-    }
+    final themeController = ref.watch(themeProvider); // get a reference to the themeProvider
 
     return ScreenUtilInit(
       minTextAdapt: true,
       builder: (BuildContext context, Widget? child) {
         return ThemeProvider(
-          initTheme: widget.theme,
+          initTheme: themeController.lightTheme ? BrandThemes.lightTheme(context) : BrandThemes.darkTheme(context),
           builder: (_, theme) => MaterialApp(
             title: BrandStrings.appName.toString(),
             debugShowCheckedModeBanner: false,
-            theme: theme,
+            theme: themeController.lightTheme ? BrandThemes.lightTheme(context) : BrandThemes.darkTheme(context),
             themeMode: ThemeMode.light,
-            home: const SplashScreen(),
+            home: const HomeScreen(),
             routes: {
               // screens
               SplashScreen.id: (context) => const SplashScreen(),

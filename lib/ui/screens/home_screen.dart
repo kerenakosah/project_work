@@ -1,17 +1,18 @@
 import 'package:flutter/material.dart';
+import 'package:hooks_riverpod/hooks_riverpod.dart';
 import 'package:line_awesome_flutter/line_awesome_flutter.dart';
 import 'package:projectwork/index.dart';
 
-class HomeScreen extends StatefulWidget {
+class HomeScreen extends ConsumerStatefulWidget {
   // page id
   static const String id = BrandStrings.homeScreen;
   const HomeScreen({Key? key}) : super(key: key);
 
   @override
-  State<HomeScreen> createState() => _HomeScreenState();
+  ConsumerState<ConsumerStatefulWidget> createState() => HomeScreenState();
 }
 
-class _HomeScreenState extends State<HomeScreen> {
+class HomeScreenState extends ConsumerState<HomeScreen> {
   late PageController _controller;
   int selectedBottomBarIndex = 0;
   bool _isMapLoading = false;
@@ -37,23 +38,23 @@ class _HomeScreenState extends State<HomeScreen> {
     barItems = [
       BarItem(
         icon: Icons.store_mall_directory_outlined,
-        iconSize: 24,
+        iconSize: 24.0,
         text: "Home",
-        textSize: 18,
+        textSize: 18.0,
         color: BrandColors.kColorHomeView,
       ),
       BarItem(
         icon: LineAwesomeIcons.wheelchair,
-        iconSize: 24,
+        iconSize: 24.0,
         text: "Patient",
-        textSize: 18,
+        textSize: 18.0,
         color: BrandColors.kColorPatientsView,
       ),
       BarItem(
         icon: LineAwesomeIcons.user_shield,
-        iconSize: 24,
+        iconSize: 24.0,
         text: "Profile",
-        textSize: 18,
+        textSize: 18.0,
         color: BrandColors.kColorProfileView,
       ),
     ];
@@ -68,6 +69,9 @@ class _HomeScreenState extends State<HomeScreen> {
 
   @override
   Widget build(BuildContext context) {
+    // theme controller
+    final themeController = ref.watch(themeProvider);
+
     return Scaffold(
       extendBodyBehindAppBar: true,
       body: SafeArea(
@@ -97,7 +101,7 @@ class _HomeScreenState extends State<HomeScreen> {
         ),
       ),
       bottomNavigationBar: AnimatedBottomBar(
-        backgroundColor: BrandColors.kColorBackground,
+        backgroundColor: themeController.darkTheme ? BrandColors.kDark : BrandColors.kColorBackground,
         onItemTap: (index) {
           _controller.animateToPage(
             index,

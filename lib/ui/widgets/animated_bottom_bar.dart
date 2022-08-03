@@ -1,5 +1,7 @@
 import 'package:auto_size_text/auto_size_text.dart';
 import 'package:flutter/material.dart';
+import 'package:google_fonts/google_fonts.dart';
+import 'package:hooks_riverpod/hooks_riverpod.dart';
 import 'package:projectwork/index.dart';
 
 class AnimatedBottomBar extends StatefulWidget {
@@ -32,7 +34,7 @@ class _AnimatedBottomBarState extends State<AnimatedBottomBar> with TickerProvid
       elevation: widget.elevation,
       child: Container(
         height: 60,
-        padding: const EdgeInsets.symmetric(horizontal: 12),
+        padding: const EdgeInsets.symmetric(horizontal: 18.0),
         child: Row(
           mainAxisAlignment: MainAxisAlignment.spaceBetween,
           children: <Widget>[
@@ -70,7 +72,7 @@ class _AnimatedBottomBarState extends State<AnimatedBottomBar> with TickerProvid
   }
 }
 
-class AnimatedBarItem extends StatefulWidget {
+class AnimatedBarItem extends ConsumerStatefulWidget {
   final bool isSelected;
   final int currBarItem;
   final BarItem barItem;
@@ -89,15 +91,26 @@ class AnimatedBarItem extends StatefulWidget {
     required this.elevation,
     required this.onItemTap,
   }) : super(key: key);
+
   @override
-  _AnimatedBarItemState createState() => _AnimatedBarItemState();
+  ConsumerState<ConsumerStatefulWidget> createState() => AnimatedBarItemState();
 }
 
-class _AnimatedBarItemState extends State<AnimatedBarItem> with TickerProviderStateMixin {
+class AnimatedBarItemState extends ConsumerState<AnimatedBarItem> with TickerProviderStateMixin {
   @override
   Widget build(BuildContext context) {
+    final themeController = ref.watch(themeProvider);
+
     return AnimatedContainer(
-      padding: widget.isSelected ? const EdgeInsets.symmetric(horizontal: 18, vertical: 8) : const EdgeInsets.symmetric(horizontal: 0, vertical: 8),
+      padding: widget.isSelected
+          ? const EdgeInsets.symmetric(
+              horizontal: 18.0,
+              vertical: 8.0,
+            )
+          : const EdgeInsets.symmetric(
+              horizontal: 0.0,
+              vertical: 8.0,
+            ),
       duration: widget.animationDuration,
       decoration: BoxDecoration(
         color: widget.isSelected ? widget.barItem.color!.withOpacity(0.15) : Colors.transparent,
@@ -112,22 +125,25 @@ class _AnimatedBarItemState extends State<AnimatedBarItem> with TickerProviderSt
           children: <Widget>[
             Icon(
               widget.barItem.icon,
-              color: widget.isSelected ? widget.barItem.color : Colors.black,
+              // color: widget.isSelected ? widget.barItem.color : Colors.black,
+              // if the item is selected show the item color otherwise if the item is not selected then check for the active theme
+              color: widget.isSelected
+                  ? widget.barItem.color
+                  : themeController.darkTheme
+                      ? BrandColors.white
+                      : BrandColors.black,
               size: widget.barItem.iconSize,
             ),
-            const SizedBox(
-              width: 5,
-            ),
+            const SizedBox(width: 5.0),
             AnimatedSize(
               curve: Curves.easeInOut,
               duration: widget.animationDuration,
               child: LimitedBox(
-                maxWidth: 70,
+                maxWidth: 100.0,
                 child: AutoSizeText(
                   widget.isSelected ? "${widget.barItem.text}" : "",
-                  style: TextStyle(
+                  style: GoogleFonts.montserrat(
                     color: widget.barItem.color,
-                    fontFamily: "Montserrat",
                     fontWeight: FontWeight.w600,
                     fontSize: widget.barItem.textSize,
                   ),

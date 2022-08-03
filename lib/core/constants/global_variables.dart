@@ -1,6 +1,7 @@
 // functionalities
 import 'package:geolocator/geolocator.dart';
 import 'package:google_maps_flutter/google_maps_flutter.dart';
+import 'package:shared_preferences/shared_preferences.dart';
 
 // initial camera position
 const CameraPosition googlePlex = CameraPosition(
@@ -19,3 +20,6 @@ const double mediumMapZoom = 14.0;
 const int locationChangeInterval = 5000; //in milliseconds
 const double locationChangeDistance = 5.0; //in meters
 const double locationArriveDistance = 200.0; //in meters
+
+// shared preference instance
+Future<SharedPreferences> sharedPreferences = SharedPreferences.getInstance();
