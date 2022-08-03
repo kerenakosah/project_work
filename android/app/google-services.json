@@ -1,0 +1,39 @@
+{
+  "project_info": {
+    "project_number": "653347381634",
+    "project_id": "keren--project",
+    "storage_bucket": "keren--project.appspot.com"
+  },
+  "client": [
+    {
+      "client_info": {
+        "mobilesdk_app_id": "1:653347381634:android:9c476f076533a6ea81ef9b",
+        "android_client_info": {
+          "package_name": "com.kerenakosah.projectwork"
+        }
+      },
+      "oauth_client": [
+        {
+          "client_id": "653347381634-3a44sqvi24vl3hdhhlv0r9564e1ksr3q.apps.googleusercontent.com",
+          "client_type": 3
+        }
+      ],
+      "api_key": [
+        {
+          "current_key": "AIzaSyAZsHf8IvWX7D8lqvoLFP_Z_COng4w1VF4"
+        }
+      ],
+      "services": {
+        "appinvite_service": {
+          "other_platform_oauth_client": [
+            {
+              "client_id": "653347381634-3a44sqvi24vl3hdhhlv0r9564e1ksr3q.apps.googleusercontent.com",
+              "client_type": 3
+            }
+          ]
+        }
+      }
+    }
+  ],
+  "configuration_version": "1"
+}

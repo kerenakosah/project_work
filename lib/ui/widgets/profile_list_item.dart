@@ -48,19 +48,20 @@ class ProfileListItem extends StatelessWidget {
             Icon(
               icon,
               size: kSpacingUnit.w * 2.5,
-              color: iconColor ?? BrandColors.black,
+              color: iconColor ?? BrandColors.white,
             ),
             SizedBox(width: kSpacingUnit.w * 1.5),
             CustomTextWidget(
               text: text,
               fontWeight: FontWeight.w500,
-              color: textColor ?? BrandColors.kColorText,
+              color: textColor ?? BrandColors.kColorWhiteAccent,
             ),
             const Spacer(),
             if (hasNavigation)
               Icon(
                 LineAwesomeIcons.angle_right,
                 size: kSpacingUnit.w * 2.5,
+                color: iconColor ?? BrandColors.white,
               ),
           ],
         ),

@@ -48,7 +48,7 @@ class ProfilePageState extends ConsumerState<ProfilePage> {
                       widthFactor: kSpacingUnit.w * 1.5,
                       child: Icon(
                         LineAwesomeIcons.edit,
-                        color: themeController.activeTheme ? BrandColors.kPrimaryBackgroundColor : BrandColors.kColorWhiteAccent,
+                        color: themeController.darkTheme ? BrandColors.white : BrandColors.kButtonBlue,
                         size: ScreenUtil().setSp(kSpacingUnit.w * 2.5),
                       ),
                     ),
@@ -60,50 +60,16 @@ class ProfilePageState extends ConsumerState<ProfilePage> {
           SizedBox(height: kSpacingUnit.w * 2),
           CustomText(
             text: "hello Keren",
-            color: themeController.activeTheme ? BrandColors.kColorText : BrandColors.kColorWhiteAccent,
+            color: themeController.darkTheme ? BrandColors.kColorWhiteAccent : BrandColors.black,
           ),
           SizedBox(height: kSpacingUnit.w * 0.5),
           CustomText(
             text: "keren@gmail.com",
-            color: themeController.activeTheme ? BrandColors.kColorText : BrandColors.kColorWhiteAccent,
+            color: themeController.darkTheme ? BrandColors.kColorWhiteAccent : BrandColors.black,
           ),
           SizedBox(height: kSpacingUnit.w * 2),
         ],
       ),
-    );
-
-    ThemeSwitcher themeSwitcher = ThemeSwitcher(
-      builder: (context) {
-        return AnimatedCrossFade(
-          duration: const Duration(milliseconds: 200),
-          crossFadeState: ThemeModelInheritedNotifier.of(context).theme.brightness == Brightness.dark ? CrossFadeState.showFirst : CrossFadeState.showSecond,
-          firstChild: GestureDetector(
-            onTap: () {
-              ThemeSwitcher.of(context).changeTheme(
-                theme: lightTheme,
-              );
-              themeController.activeTheme = !themeController.activeTheme;
-            },
-            child: Icon(
-              LineAwesomeIcons.sun,
-              size: ScreenUtil().setSp(kSpacingUnit.w * 3),
-            ),
-          ),
-          secondChild: GestureDetector(
-            onTap: () {
-              ThemeSwitcher.of(context).changeTheme(
-                theme: darkTheme,
-              );
-              themeController.activeTheme = !themeController.activeTheme;
-            },
-            child: Icon(
-              LineAwesomeIcons.moon,
-              color: themeController.activeTheme ? BrandColors.black : BrandColors.kColorWhiteAccent,
-              size: ScreenUtil().setSp(kSpacingUnit.w * 3),
-            ),
-          ),
-        );
-      },
     );
 
     Widget header = Row(
@@ -112,7 +78,16 @@ class ProfilePageState extends ConsumerState<ProfilePage> {
       children: <Widget>[
         SizedBox(width: kSpacingUnit.w * 3),
         profileInfo,
-        themeSwitcher,
+        GestureDetector(
+          onTap: () {
+            Navigator.pushNamed(context, SettingsPage.id);
+          },
+          child: Icon(
+            LineAwesomeIcons.cog,
+            color: themeController.darkTheme ? BrandColors.kColorWhiteAccent : BrandColors.black,
+            size: ScreenUtil().setSp(kSpacingUnit.w * 3),
+          ),
+        ),
         SizedBox(width: kSpacingUnit.w * 1.5),
       ],
     );
@@ -130,41 +105,6 @@ class ProfilePageState extends ConsumerState<ProfilePage> {
                     physics: const BouncingScrollPhysics(),
                     children: <Widget>[
                       ProfileListItem(
-                        icon: LineAwesomeIcons.user_shield,
-                        text: 'Privacy Policy',
-                        iconColor: themeController.activeTheme ? BrandColors.white : BrandColors.black,
-                        bgColor: themeController.activeTheme ? BrandColors.black : BrandColors.kColorWhiteAccent,
-                        textColor: themeController.activeTheme ? BrandColors.kColorWhiteAccent : BrandColors.kColorText,
-                      ),
-                      ProfileListItem(
-                        icon: LineAwesomeIcons.history,
-                        text: 'History',
-                        iconColor: themeController.activeTheme ? BrandColors.white : BrandColors.black,
-                        bgColor: themeController.activeTheme ? BrandColors.black : BrandColors.kColorWhiteAccent,
-                        textColor: themeController.activeTheme ? BrandColors.kColorWhiteAccent : BrandColors.kColorText,
-                      ),
-                      ProfileListItem(
-                        icon: LineAwesomeIcons.question_circle,
-                        text: 'Help & Support',
-                        iconColor: themeController.activeTheme ? BrandColors.white : BrandColors.black,
-                        bgColor: themeController.activeTheme ? BrandColors.black : BrandColors.kColorWhiteAccent,
-                        textColor: themeController.activeTheme ? BrandColors.kColorWhiteAccent : BrandColors.kColorText,
-                      ),
-                      ProfileListItem(
-                        icon: LineAwesomeIcons.cog,
-                        text: 'Settings',
-                        iconColor: themeController.activeTheme ? BrandColors.white : BrandColors.black,
-                        bgColor: themeController.activeTheme ? BrandColors.black : BrandColors.kColorWhiteAccent,
-                        textColor: themeController.activeTheme ? BrandColors.kColorWhiteAccent : BrandColors.kColorText,
-                      ),
-                      ProfileListItem(
-                        icon: LineAwesomeIcons.user_plus,
-                        text: 'Invite a Friend',
-                        iconColor: themeController.activeTheme ? BrandColors.white : BrandColors.black,
-                        bgColor: themeController.activeTheme ? BrandColors.black : BrandColors.kColorWhiteAccent,
-                        textColor: themeController.activeTheme ? BrandColors.kColorWhiteAccent : BrandColors.kColorText,
-                      ),
-                      ProfileListItem(
                         onPressed: () async {
                           // await authRepo.signOut();
                           // userController.initUser();
@@ -178,9 +118,6 @@ class ProfilePageState extends ConsumerState<ProfilePage> {
                         },
                         icon: LineAwesomeIcons.alternate_sign_out,
                         text: 'Logout',
-                        iconColor: themeController.activeTheme ? BrandColors.white : BrandColors.black,
-                        bgColor: themeController.activeTheme ? BrandColors.black : BrandColors.kColorWhiteAccent,
-                        textColor: themeController.activeTheme ? BrandColors.kColorWhiteAccent : BrandColors.kColorText,
                         hasNavigation: false,
                       ),
                     ],

@@ -1,18 +1,34 @@
 import 'package:flutter/material.dart';
+import 'package:google_fonts/google_fonts.dart';
+import 'package:hooks_riverpod/hooks_riverpod.dart';
 import 'package:projectwork/index.dart';
 
-class PatientPage extends StatefulWidget {
+class PatientPage extends ConsumerStatefulWidget {
   // page id
   static const id = BrandStrings.patientPage;
   const PatientPage({Key? key}) : super(key: key);
 
   @override
-  State<PatientPage> createState() => _PatientPageState();
+  ConsumerState<ConsumerStatefulWidget> createState() => PatientPageState();
 }
 
-class _PatientPageState extends State<PatientPage> {
+class PatientPageState extends ConsumerState<PatientPage> {
   @override
   Widget build(BuildContext context) {
-    return Container();
+    final themeController = ref.watch(themeProvider);
+    return Scaffold(
+      body: SafeArea(
+        child: Center(
+          child: Text(
+            'Patient Page',
+            style: GoogleFonts.montserrat(
+              fontSize: 20,
+              fontWeight: FontWeight.w600,
+              color: themeController.darkTheme ? BrandColors.white : BrandColors.black,
+            ),
+          ),
+        ),
+      ),
+    );
   }
 }

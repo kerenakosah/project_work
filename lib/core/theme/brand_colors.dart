@@ -4,8 +4,6 @@ class BrandColors {
   static const double primaryColorOpacity = 0.1;
 
   // theme colors
-  static const Color primaryColor = Color(0xFFF9F9F9);
-  static const Color secondaryColor = Color(0xFF363636);
   static const Color accentColor = Color(0xFFFFFFFF);
   static const Color accentColor2 = Color(0xFFEEEEEE);
   static const Color white = Color(0xFFFFFFFF);
@@ -28,6 +26,26 @@ class BrandColors {
   static get kColorHomeView => Colors.purpleAccent[700];
   static get kColorPatientsView => Colors.red;
   static get kColorProfileView => const Color(0xff009a88);
+
+  // others
+  static get primaryColor => const Color(0xFF2B1A64);
+  static get secondaryColor => const Color(0xFF4b98db);
+  static get lightThemePrimaryColor => const Color(0xffffffff);
+  static get darkThemePrimaryColor => const Color(0xff212327);
+  static get lightThemeScaffoldBGColor => const Color(0xFFFAFAFA);
+  static get darkThemeScaffoldBGColor => const Color(0xFF303030);
+  static get lightThemeBigTextColor => const Color(0xff000000);
+  static get darkThemeBigTextColor => const Color(0xfff0f0f0);
+  static get lightThemeNormalTextColor => const Color(0xff000000);
+  static get darkThemeNormalTextColor => const Color(0xfff0f0f0);
+  static get lightThemeSmallTextColor => const Color(0xFF858992);
+  static get darkThemeSmallTextColor => const Color(0xffcccccc);
+  static get lightThemeTextFieldTextColor => const Color(0xff333333);
+  static get darkThemeTextFieldTextColor => const Color(0xfff0f0f0);
+  static get lightThemeTextFieldHintColor => const Color(0xff9b9b9b);
+  static get darkThemeTextFieldHintColor => const Color(0xff9b9b9b);
+  static get lightThemeTextFieldCursorColor => const Color(0xff000000);
+  static get darkThemeTextFieldCursorColor => const Color(0xfff44336);
 
   // brand colors
   static get baseColor => const Color(0xffF88C90);
