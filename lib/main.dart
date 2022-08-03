@@ -45,7 +45,7 @@ class CustomAppState extends ConsumerState<CustomApp> {
             debugShowCheckedModeBanner: false,
             theme: themeController.lightTheme ? BrandThemes.lightTheme(context) : BrandThemes.darkTheme(context),
             themeMode: ThemeMode.light,
-            home: const HomeScreen(),
+            home: const SplashScreen(),
             routes: {
               // screens
               SplashScreen.id: (context) => const SplashScreen(),

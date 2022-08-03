@@ -66,6 +66,16 @@ class SettingsPageState extends ConsumerState<SettingsPage> {
                   mainAxisAlignment: MainAxisAlignment.spaceBetween,
                   crossAxisAlignment: CrossAxisAlignment.start,
                   children: <Widget>[
+                    IconButton(
+                      icon: Icon(
+                        LineAwesomeIcons.angle_left,
+                        color: themeController.darkTheme ? BrandColors.black : BrandColors.white,
+                        size: ScreenUtil().setSp(kSpacingUnit.w * 3),
+                      ),
+                      onPressed: () {
+                        Navigator.pop(context);
+                      },
+                    ),
                     Expanded(child: Container()),
                     SizedBox(width: kSpacingUnit.w * 3),
                     themeSwitcher,
