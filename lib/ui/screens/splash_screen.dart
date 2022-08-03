@@ -2,6 +2,7 @@ import 'dart:async';
 
 import 'package:flutter/material.dart';
 import 'package:projectwork/index.dart';
+import 'package:shimmer/shimmer.dart';
 
 class SplashScreen extends StatefulWidget {
   // page id
@@ -41,10 +42,13 @@ class InitState extends State<SplashScreen> {
             ),
           ),
           Center(
-            child: Image.asset(
-              Assets.imagesAppLogo,
+            child: Shimmer.fromColors(
+              child: Image.asset(Assets.imagesAppLogo),
+              baseColor: Colors.black12,
+              highlightColor: Colors.white,
+              loop: 3,
             ),
-          )
+          ),
         ],
       ),
     );

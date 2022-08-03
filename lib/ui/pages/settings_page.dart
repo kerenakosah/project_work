@@ -69,7 +69,7 @@ class SettingsPageState extends ConsumerState<SettingsPage> {
                     IconButton(
                       icon: Icon(
                         LineAwesomeIcons.angle_left,
-                        color: themeController.darkTheme ? BrandColors.black : BrandColors.white,
+                        color: themeController.darkTheme ? BrandColors.white : BrandColors.black,
                         size: ScreenUtil().setSp(kSpacingUnit.w * 3),
                       ),
                       onPressed: () {
