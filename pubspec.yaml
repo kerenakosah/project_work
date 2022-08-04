@@ -28,10 +28,11 @@ dependencies:
   custom_info_window: ^1.0.1
   flutter_screenutil: ^5.5.3+2
   flutter_svg: ^1.1.1+1
+  flutter_native_splash: ^2.2.7
 
   # firebase
   firebase_core: ^1.20.0
-  firebase_auth: ^3.5.1
+  firebase_auth: ^3.6.2
   firebase_messaging: ^12.0.1
   firebase_storage: ^10.3.3
   cloud_firestore: ^3.4.1
@@ -40,6 +41,28 @@ dev_dependencies:
   flutter_test:
     sdk: flutter
   flutter_lints: ^1.0.0
+#  flutter_launcher_icons: ^0.9.3
+
+# app icons
+flutter_icons:
+  image_path_android: "assets/images/app_logo.png"
+  image_path_ios: "assets/images/app_logo.png"
+  android: true
+  ios: true
+  remove_alpha_ios: true
+  adaptive_icon_background: "#000000"
+
+# native splash screen
+flutter_native_splash:
+  background_image: "assets/images/bg.png"
+  background_image_dark: "assets/images/bg.png"
+  image: assets/images/app_logo.png
+  image_dark: assets/images/app_logo.png
+  android: true
+  ios: true
+  fullscreen: true
+  android_gravity: center
+  ios_content_mode: scaleAspectFill
 
 flutter:
   uses-material-design: true

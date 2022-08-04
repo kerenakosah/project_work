@@ -2,9 +2,13 @@
 class Assets {
   Assets._();
 
-  static const String iconsDarkTheme = 'assets/icons/dark_theme.svg';
-  static const String iconsLightTheme = 'assets/icons/light_theme.svg';
+  static const String iconsChecklist = 'assets/icons/checklist.png';
+  static const String iconsLocationPin = 'assets/icons/location_pin.png';
+  static const String iconsPulse = 'assets/icons/pulse.png';
+  static const String iconsSadSmiley = 'assets/icons/sad_smiley.png';
+  static const String imagesAnne = 'assets/images/anne.jpeg';
   static const String imagesAppLogo = 'assets/images/app_logo.png';
+  static const String imagesBg = 'assets/images/bg.png';
   static const String imagesSplashBg = 'assets/images/splash_bg.png';
   static const String svgAccount = 'assets/svg/account.svg';
 }

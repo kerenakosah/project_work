@@ -31,4 +31,15 @@ class BrandStrings {
   static get addressError => "Enter a valid street address";
   static get idError => "Enter a valid ID name";
   static get phoneError => "Enter a valid phone number";
+
+  // other texts
+  static get patientProfile => "Patient Profile";
+  static get level => "Response";
+  static get progress => "Progress";
+  static get successEvent => "Success Event";
+  static get criticalIssues => "Critical Issues";
+  static get severeIssues => "Severe Issues";
+  static get allEvents => "All Events";
+  static get respondedEvents => "Failed Events";
+  static get newEvents => "New Events";
 }

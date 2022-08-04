@@ -20,6 +20,7 @@ class ProfilePageState extends ConsumerState<ProfilePage> {
   Widget build(BuildContext context) {
     // get a reference to the themeProvider
     final themeController = ref.watch(themeProvider);
+    final userController = ref.watch(userProvider);
     const kSpacingUnit = 10;
     Widget profileInfo = Expanded(
       child: Column(
@@ -106,15 +107,14 @@ class ProfilePageState extends ConsumerState<ProfilePage> {
                     children: <Widget>[
                       ProfileListItem(
                         onPressed: () async {
-                          // await authRepo.signOut();
-                          // userController.initUser();
-                          // if (!userController.isUserLoggedIn) {
-                          //   NavigationService.navigateTo(
-                          //     isNamed: true,
-                          //     page: RoutePaths.authLogin,
-                          //     navigationMethod: NavigationMethod.pushReplacement,
-                          //   );
-                          // }
+                          userController.logout();
+                          if (!userController.isUserLoggedIn) {
+                            Navigator.pushNamedAndRemoveUntil(
+                              context,
+                              BoardingScreen.id,
+                              (route) => false,
+                            );
+                          }
                         },
                         icon: LineAwesomeIcons.alternate_sign_out,
                         text: 'Logout',

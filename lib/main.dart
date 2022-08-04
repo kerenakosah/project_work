@@ -1,12 +1,21 @@
 import 'package:animated_theme_switcher/animated_theme_switcher.dart';
+import 'package:firebase_core/firebase_core.dart';
 import 'package:flutter/material.dart';
+import 'package:flutter_native_splash/flutter_native_splash.dart';
 import 'package:flutter_screenutil/flutter_screenutil.dart';
 import 'package:hooks_riverpod/hooks_riverpod.dart';
 import 'package:projectwork/index.dart';
 
 Future<void> main() async {
-  WidgetsFlutterBinding.ensureInitialized();
-  // await Firebase.initializeApp();
+  // ensure widgets are initialized
+  WidgetsBinding widgetsBinding = WidgetsFlutterBinding.ensureInitialized();
+  FlutterNativeSplash.preserve(widgetsBinding: widgetsBinding);
+
+  // initialize firebase
+  await Firebase.initializeApp(
+    name: BrandStrings.appName.toString(),
+    options: DefaultFirebaseConfig.platformOptions,
+  );
 
   runApp(
     const ProviderScope(
@@ -27,13 +36,16 @@ class CustomApp extends ConsumerStatefulWidget {
 class CustomAppState extends ConsumerState<CustomApp> {
   @override
   void initState() {
+    FlutterNativeSplash.remove();
     ref.read(themeProvider.notifier).load(); // load the theme from themeController
+    ref.read(userProvider).initUser(); // load the user from userController
     super.initState();
   }
 
   @override
   Widget build(BuildContext context) {
-    final themeController = ref.watch(themeProvider); // get a reference to the themeProvider
+    final themeController = ref.read(themeProvider); // get a reference to the themeProvider
+    final userController = ref.watch(userProvider);
 
     return ScreenUtilInit(
       minTextAdapt: true,
@@ -45,7 +57,7 @@ class CustomAppState extends ConsumerState<CustomApp> {
             debugShowCheckedModeBanner: false,
             theme: themeController.lightTheme ? BrandThemes.lightTheme(context) : BrandThemes.darkTheme(context),
             themeMode: ThemeMode.light,
-            home: const SplashScreen(),
+            home: userController.isUserLoggedIn ? const HomeScreen() : const SplashScreen(),
             routes: {
               // screens
               SplashScreen.id: (context) => const SplashScreen(),
