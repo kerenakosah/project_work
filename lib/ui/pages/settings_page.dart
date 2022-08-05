@@ -60,6 +60,8 @@ class SettingsPageState extends ConsumerState<SettingsPage> {
         builder: (context) {
           return Scaffold(
             body: Column(
+              mainAxisAlignment: MainAxisAlignment.center,
+              crossAxisAlignment: CrossAxisAlignment.center,
               children: <Widget>[
                 SizedBox(height: kSpacingUnit.w * 3),
                 Row(

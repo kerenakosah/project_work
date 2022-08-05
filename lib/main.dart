@@ -45,7 +45,6 @@ class CustomAppState extends ConsumerState<CustomApp> {
   @override
   Widget build(BuildContext context) {
     final themeController = ref.read(themeProvider); // get a reference to the themeProvider
-    final userController = ref.watch(userProvider);
 
     return ScreenUtilInit(
       minTextAdapt: true,
@@ -57,7 +56,7 @@ class CustomAppState extends ConsumerState<CustomApp> {
             debugShowCheckedModeBanner: false,
             theme: themeController.lightTheme ? BrandThemes.lightTheme(context) : BrandThemes.darkTheme(context),
             themeMode: ThemeMode.light,
-            home: userController.isUserLoggedIn ? const HomeScreen() : const SplashScreen(),
+            home: const SplashScreen(),
             routes: {
               // screens
               SplashScreen.id: (context) => const SplashScreen(),

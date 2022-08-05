@@ -74,7 +74,7 @@ class BoardingScreenState extends ConsumerState<BoardingScreen> {
 
     return SafeArea(
       child: Scaffold(
-        resizeToAvoidBottomInset: false,
+        resizeToAvoidBottomInset: true,
         body: Stack(
           children: [
             SplashCard(

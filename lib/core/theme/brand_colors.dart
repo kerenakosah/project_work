@@ -27,6 +27,11 @@ class BrandColors {
   static get kColorPatientsView => Colors.red;
   static get kColorProfileView => const Color(0xff009a88);
 
+  static get colorDarkGreen => const Color(0xFF40cf89);
+  static get colorGreen => const Color(0xFF40cf89);
+  static get colorDarkBlue => const Color(0xFF2B1A64);
+  static get colorDarkTheme => const Color(0xFF121212);
+
   // others
   static get primaryColor => const Color(0xFF2B1A64);
   static get secondaryColor => const Color(0xFF4b98db);

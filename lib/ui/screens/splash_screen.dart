@@ -1,27 +1,29 @@
 import 'package:flutter/material.dart';
+import 'package:hooks_riverpod/hooks_riverpod.dart';
 import 'package:projectwork/index.dart';
 import 'package:shimmer/shimmer.dart';
 
-class SplashScreen extends StatefulWidget {
+class SplashScreen extends ConsumerStatefulWidget {
   // page id
   static const String id = BrandStrings.splashScreen;
   const SplashScreen({Key? key}) : super(key: key);
 
   @override
-  State<StatefulWidget> createState() => InitState();
+  ConsumerState<ConsumerStatefulWidget> createState() => SplashScreenState();
 }
 
-class InitState extends State<SplashScreen> {
-  // open the boarding screen
-  void _openBoardingScreen() {
-    Navigator.pushNamedAndRemoveUntil(context, BoardingScreen.id, (route) => false);
-  }
-
+class SplashScreenState extends ConsumerState<SplashScreen> {
   @override
   initState() {
     super.initState();
     // delay for 5 seconds and navigate to the login screen
-    Future.delayed(const Duration(seconds: 5), _openBoardingScreen);
+    Future.delayed(const Duration(seconds: 5), () {
+      if (ref.watch(userProvider).isUserLoggedIn) {
+        Navigator.pushNamedAndRemoveUntil(context, HomeScreen.id, (route) => false);
+      } else {
+        Navigator.pushNamedAndRemoveUntil(context, BoardingScreen.id, (route) => false);
+      }
+    });
   }
 
   @override
@@ -45,17 +47,6 @@ class InitState extends State<SplashScreen> {
                 padding: const EdgeInsets.symmetric(
                   horizontal: 20.0,
                   vertical: 10.0,
-                ),
-                decoration: BoxDecoration(
-                  color: Colors.transparent,
-                  // add a shadow
-                  boxShadow: [
-                    BoxShadow(
-                      color: Colors.black12.withOpacity(0.2),
-                      blurRadius: 80.0,
-                      spreadRadius: 30.0,
-                    ),
-                  ],
                 ),
                 child: Image.asset(
                   Assets.imagesAppLogo,

@@ -3,6 +3,7 @@ export 'bottom_bar_item.dart';
 export 'brand_button.dart';
 export 'brand_divider.dart';
 export 'brand_image.dart';
+export 'custom_flush_bar.dart';
 export 'custom_text.dart';
 export 'custom_text_widget.dart';
 export 'empty.dart';

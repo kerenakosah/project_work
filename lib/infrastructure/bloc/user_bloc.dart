@@ -12,7 +12,7 @@ class MUser {
     FirebaseAuth.instance.authStateChanges().listen((user) {
       if (user != null) {
         isUserLoggedIn = true; // user is logged in
-        currentFirebaseUser = user;
+        updateCurrentFirebaseUser(user);
       } else {
         isUserLoggedIn = false;
       }
@@ -22,15 +22,11 @@ class MUser {
   // update current firebase user
   updateCurrentFirebaseUser(User user) {
     currentFirebaseUser = user;
+    initUser();
   }
 
   updateCurrentUserInfo(UserModel userModel) {
     currentUserInfo = userModel;
-  }
-
-  // log user out
-  logout() async {
-    await FirebaseAuth.instance.signOut();
     initUser();
   }
 }
