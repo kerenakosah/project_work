@@ -27,6 +27,11 @@ class BrandColors {
   static get kColorPatientsView => Colors.red;
   static get kColorProfileView => const Color(0xff009a88);
 
+  static get colorDarkGreen => const Color(0xFF40cf89);
+  static get colorGreen => const Color(0xFF40cf89);
+  static get colorDarkBlue => const Color(0xFF2B1A64);
+  static get colorDarkTheme => const Color(0xFF121212);
+
   // others
   static get primaryColor => const Color(0xFF2B1A64);
   static get secondaryColor => const Color(0xFF4b98db);
@@ -104,5 +109,20 @@ class BrandColors {
   static get kTextColor => const Color(0xFFBFFFFF);
 
   // add your custom colors
+  static get colorLight => const Color(0xFFFFFFFF);
+  static get colorDark => const Color(0xFF000000);
+  static get lPrimaryColor => const Color(0xFFDB3620);
+  static get lPrimaryColorOpacity => const Color(0xFFFF7F50);
+  static get hintTextColor => const Color(0xFFE4E0E8);
+  static get primaryTextColor => const Color(0xFF1A1316);
+  static get secondaryTextColor => const Color(0xFF8391A0);
+  static get tertiaryTextColor => const Color(0xFFB5ADAC);
 
+  static get buttonColor => const Color(0xFFB40284);
+  static get primaryBackgroundColor => const Color(0xFFBD34C5);
+  static get splashBackgroundColor => const Color(0xFFBFFFFF);
+  static get strokeColor => const Color(0xFFBC7C7C);
+
+  static get greenColor => Colors.green.shade400;
+  static get blueColor => Colors.lightBlueAccent;
 }

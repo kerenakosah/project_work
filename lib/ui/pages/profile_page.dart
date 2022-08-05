@@ -20,6 +20,7 @@ class ProfilePageState extends ConsumerState<ProfilePage> {
   Widget build(BuildContext context) {
     // get a reference to the themeProvider
     final themeController = ref.watch(themeProvider);
+    final userController = ref.watch(userProvider);
     const kSpacingUnit = 10;
     Widget profileInfo = Expanded(
       child: Column(
@@ -32,8 +33,8 @@ class ProfilePageState extends ConsumerState<ProfilePage> {
               children: <Widget>[
                 SvgPicture.asset(
                   Assets.svgAccount,
-                  width: 200.0,
-                  height: 200.0,
+                  width: 200,
+                  height: 200,
                 ),
                 Align(
                   alignment: Alignment.bottomRight,
@@ -59,13 +60,19 @@ class ProfilePageState extends ConsumerState<ProfilePage> {
           ),
           SizedBox(height: kSpacingUnit.w * 2),
           CustomText(
-            text: "hello Keren",
+            text: userController.currentUserInfo.displayName,
             color: themeController.darkTheme ? BrandColors.kColorWhiteAccent : BrandColors.black,
+            fontWeight: FontWeight.w700,
+            fontSize: 22.0,
+            maxLines: 2,
           ),
           SizedBox(height: kSpacingUnit.w * 0.5),
           CustomText(
-            text: "keren@gmail.com",
+            text: userController.currentUserInfo.email,
             color: themeController.darkTheme ? BrandColors.kColorWhiteAccent : BrandColors.black,
+            fontWeight: FontWeight.w500,
+            fontSize: 18.0,
+            maxLines: 2,
           ),
           SizedBox(height: kSpacingUnit.w * 2),
         ],
@@ -100,29 +107,26 @@ class ProfilePageState extends ConsumerState<ProfilePage> {
               children: <Widget>[
                 SizedBox(height: kSpacingUnit.w * 1),
                 header,
-                Expanded(
-                  child: ListView(
-                    physics: const BouncingScrollPhysics(),
-                    children: <Widget>[
-                      ProfileListItem(
-                        onPressed: () async {
-                          // await authRepo.signOut();
-                          // userController.initUser();
-                          // if (!userController.isUserLoggedIn) {
-                          //   NavigationService.navigateTo(
-                          //     isNamed: true,
-                          //     page: RoutePaths.authLogin,
-                          //     navigationMethod: NavigationMethod.pushReplacement,
-                          //   );
-                          // }
-                        },
-                        icon: LineAwesomeIcons.alternate_sign_out,
-                        text: 'Logout',
-                        hasNavigation: false,
-                      ),
-                    ],
-                  ),
-                )
+                Expanded(child: Container()),
+                ProfileListItem(
+                  onPressed: () async {
+                    authRepo.signOut();
+                    userController.initUser();
+                    if (!userController.isUserLoggedIn) {
+                      Navigator.pushNamedAndRemoveUntil(
+                        context,
+                        BoardingScreen.id,
+                        (route) => false,
+                      );
+                    }
+                  },
+                  icon: LineAwesomeIcons.alternate_sign_out,
+                  bgColor: themeController.darkTheme ? BrandColors.white : BrandColors.black,
+                  iconColor: themeController.darkTheme ? BrandColors.black : BrandColors.white,
+                  textColor: themeController.darkTheme ? BrandColors.black : BrandColors.white,
+                  text: 'Logout',
+                  hasNavigation: false,
+                ),
               ],
             ),
           );

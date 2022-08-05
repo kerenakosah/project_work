@@ -101,7 +101,7 @@ class HomeScreenState extends ConsumerState<HomeScreen> {
         ),
       ),
       bottomNavigationBar: AnimatedBottomBar(
-        backgroundColor: themeController.darkTheme ? BrandColors.kDark : BrandColors.kColorBackground,
+        backgroundColor: themeController.darkTheme ? BrandColors.black : BrandColors.kColorBackground,
         onItemTap: (index) {
           _controller.animateToPage(
             index,
