@@ -1,17 +1,17 @@
 import 'package:flutter/material.dart';
-import 'package:hooks_riverpod/hooks_riverpod.dart';
 import 'package:projectwork/index.dart';
 
-class BoardingScreen extends ConsumerStatefulWidget {
+class BoardingScreen extends StatefulWidget {
   // page id
   static const id = BrandStrings.boardingScreen;
+
   const BoardingScreen({Key? key}) : super(key: key);
 
   @override
-  ConsumerState<ConsumerStatefulWidget> createState() => BoardingScreenState();
+  State<BoardingScreen> createState() => _BoardingScreenState();
 }
 
-class BoardingScreenState extends ConsumerState<BoardingScreen> {
+class _BoardingScreenState extends State<BoardingScreen> {
   int _pageState = 0;
 
   Color _backgroundColor = BrandColors.kGrainyBackground;
@@ -74,7 +74,8 @@ class BoardingScreenState extends ConsumerState<BoardingScreen> {
 
     return SafeArea(
       child: Scaffold(
-        resizeToAvoidBottomInset: false,
+        resizeToAvoidBottomInset: true,
+        extendBodyBehindAppBar: true,
         body: Stack(
           children: [
             SplashCard(

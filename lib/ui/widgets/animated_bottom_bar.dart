@@ -1,7 +1,7 @@
 import 'package:auto_size_text/auto_size_text.dart';
 import 'package:flutter/material.dart';
+import 'package:get/get_state_manager/src/rx_flutter/rx_obx_widget.dart';
 import 'package:google_fonts/google_fonts.dart';
-import 'package:hooks_riverpod/hooks_riverpod.dart';
 import 'package:projectwork/index.dart';
 
 class AnimatedBottomBar extends StatefulWidget {
@@ -23,7 +23,7 @@ class AnimatedBottomBar extends StatefulWidget {
   }) : super(key: key);
 
   @override
-  _AnimatedBottomBarState createState() => _AnimatedBottomBarState();
+  State<StatefulWidget> createState() => _AnimatedBottomBarState();
 }
 
 class _AnimatedBottomBarState extends State<AnimatedBottomBar> with TickerProviderStateMixin {
@@ -72,7 +72,7 @@ class _AnimatedBottomBarState extends State<AnimatedBottomBar> with TickerProvid
   }
 }
 
-class AnimatedBarItem extends ConsumerStatefulWidget {
+class AnimatedBarItem extends StatefulWidget {
   final bool isSelected;
   final int currBarItem;
   final BarItem barItem;
@@ -93,14 +93,12 @@ class AnimatedBarItem extends ConsumerStatefulWidget {
   }) : super(key: key);
 
   @override
-  ConsumerState<ConsumerStatefulWidget> createState() => AnimatedBarItemState();
+  State<StatefulWidget> createState() => AnimatedBarItemState();
 }
 
-class AnimatedBarItemState extends ConsumerState<AnimatedBarItem> with TickerProviderStateMixin {
+class AnimatedBarItemState extends State<AnimatedBarItem> with TickerProviderStateMixin {
   @override
   Widget build(BuildContext context) {
-    final themeController = ref.watch(themeProvider);
-
     return AnimatedContainer(
       padding: widget.isSelected
           ? const EdgeInsets.symmetric(
@@ -121,39 +119,41 @@ class AnimatedBarItemState extends ConsumerState<AnimatedBarItem> with TickerPro
         onTap: () {
           widget.onItemTap(widget.thisItemIndex);
         },
-        child: Row(
-          children: <Widget>[
-            Icon(
-              widget.barItem.icon,
-              // color: widget.isSelected ? widget.barItem.color : Colors.black,
-              // if the item is selected show the item color otherwise if the item is not selected then check for the active theme
-              color: widget.isSelected
-                  ? widget.barItem.color
-                  : themeController.darkTheme
-                      ? BrandColors.white
-                      : BrandColors.black,
-              size: widget.barItem.iconSize,
-            ),
-            const SizedBox(width: 5.0),
-            AnimatedSize(
-              curve: Curves.easeInOut,
-              duration: widget.animationDuration,
-              child: LimitedBox(
-                maxWidth: 100.0,
-                child: AutoSizeText(
-                  widget.isSelected ? "${widget.barItem.text}" : "",
-                  style: GoogleFonts.montserrat(
-                    color: widget.barItem.color,
-                    fontWeight: FontWeight.w600,
-                    fontSize: widget.barItem.textSize,
-                  ),
-                  maxFontSize: widget.barItem.textSize!,
-                  maxLines: 1,
-                ),
+        child: Obx(() {
+          return Row(
+            children: <Widget>[
+              Icon(
+                widget.barItem.icon,
+                // color: widget.isSelected ? widget.barItem.color : Colors.black,
+                // if the item is selected show the item color otherwise if the item is not selected then check for the active theme
+                color: widget.isSelected
+                    ? widget.barItem.color
+                    : !themeController.isLightTheme
+                        ? BrandColors.white
+                        : BrandColors.black,
+                size: widget.barItem.iconSize,
               ),
-            )
-          ],
-        ),
+              const SizedBox(width: 5.0),
+              AnimatedSize(
+                curve: Curves.easeInOut,
+                duration: widget.animationDuration,
+                child: LimitedBox(
+                  maxWidth: 100.0,
+                  child: AutoSizeText(
+                    widget.isSelected ? "${widget.barItem.text}" : "",
+                    style: GoogleFonts.montserrat(
+                      color: widget.barItem.color,
+                      fontWeight: FontWeight.w600,
+                      fontSize: widget.barItem.textSize,
+                    ),
+                    maxFontSize: widget.barItem.textSize!,
+                    maxLines: 1,
+                  ),
+                ),
+              )
+            ],
+          );
+        }),
       ),
     );
   }

@@ -1,6 +1,7 @@
 // functionalities
 import 'package:geolocator/geolocator.dart';
 import 'package:google_maps_flutter/google_maps_flutter.dart';
+import 'package:projectwork/index.dart';
 import 'package:shared_preferences/shared_preferences.dart';
 
 // initial camera position
@@ -23,3 +24,10 @@ const double locationArriveDistance = 200.0; //in meters
 
 // shared preference instance
 Future<SharedPreferences> sharedPreferences = SharedPreferences.getInstance();
+
+UserRepo userRepo = UserRepo();
+AuthRepo authRepo = AuthRepo();
+
+// controllers
+ThemeController themeController = ThemeController.instance;
+UserController userController = UserController.instance;

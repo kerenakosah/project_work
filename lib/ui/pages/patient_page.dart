@@ -1,21 +1,19 @@
 import 'package:flutter/material.dart';
-import 'package:hooks_riverpod/hooks_riverpod.dart';
 import 'package:line_awesome_flutter/line_awesome_flutter.dart';
 import 'package:projectwork/index.dart';
 
-class PatientPage extends ConsumerStatefulWidget {
+class PatientPage extends StatefulWidget {
   // page id
   static const id = BrandStrings.patientPage;
   const PatientPage({Key? key}) : super(key: key);
 
   @override
-  ConsumerState<ConsumerStatefulWidget> createState() => PatientPageState();
+  State<StatefulWidget> createState() => _PatientPageState();
 }
 
-class PatientPageState extends ConsumerState<PatientPage> {
+class _PatientPageState extends State<PatientPage> {
   @override
   Widget build(BuildContext context) {
-    // final themeController = ref.watch(themeProvider);
     final screenHeight = MediaQuery.of(context).size.height;
 
     return Scaffold(

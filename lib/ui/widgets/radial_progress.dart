@@ -8,11 +8,17 @@ class RadialProgress extends StatefulWidget {
   final Color progressBackgroundColor;
   final double width;
 
-  const RadialProgress({Key? key, required this.child, this.goalCompleted = 0.7, this.progressColor = Colors.white, this.progressBackgroundColor = Colors.white, this.width = 8})
-      : super(key: key);
+  const RadialProgress({
+    Key? key,
+    required this.child,
+    this.goalCompleted = 0.7,
+    this.progressColor = Colors.white,
+    this.progressBackgroundColor = Colors.white,
+    this.width = 8,
+  }) : super(key: key);
 
   @override
-  _RadialProgressState createState() => _RadialProgressState();
+  State<StatefulWidget> createState() => _RadialProgressState();
 }
 
 class _RadialProgressState extends State<RadialProgress> with SingleTickerProviderStateMixin {
@@ -48,15 +54,15 @@ class _RadialProgressState extends State<RadialProgress> with SingleTickerProvid
   @override
   Widget build(BuildContext context) {
     return CustomPaint(
-      child: Padding(
-        padding: const EdgeInsets.all(8.0),
-        child: widget.child,
-      ),
       painter: RadialPainter(
         progressDegrees,
         widget.progressColor,
         widget.progressBackgroundColor,
         widget.width,
+      ),
+      child: Padding(
+        padding: const EdgeInsets.all(8.0),
+        child: widget.child,
       ),
     );
   }

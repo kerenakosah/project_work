@@ -1,24 +1,26 @@
 import 'package:flutter/material.dart';
-import 'package:hooks_riverpod/hooks_riverpod.dart';
+import 'package:get/get_state_manager/src/rx_flutter/rx_obx_widget.dart';
 import 'package:line_awesome_flutter/line_awesome_flutter.dart';
 import 'package:projectwork/index.dart';
 
-class HomeScreen extends ConsumerStatefulWidget {
+class HomeScreen extends StatefulWidget {
   // page id
   static const String id = BrandStrings.homeScreen;
+
   const HomeScreen({Key? key}) : super(key: key);
 
   @override
-  ConsumerState<ConsumerStatefulWidget> createState() => HomeScreenState();
+  State<HomeScreen> createState() => _HomeScreen();
 }
 
-class HomeScreenState extends ConsumerState<HomeScreen> {
+class _HomeScreen extends State<HomeScreen> {
   late PageController _controller;
   int selectedBottomBarIndex = 0;
   bool _isMapLoading = false;
   late List<Widget> pages;
   late List<BarItem> barItems;
   late Future<bool> future;
+
   Future<bool> _loadViews() async {
     setState(() {
       _isMapLoading = true;
@@ -69,9 +71,6 @@ class HomeScreenState extends ConsumerState<HomeScreen> {
 
   @override
   Widget build(BuildContext context) {
-    // theme controller
-    final themeController = ref.watch(themeProvider);
-
     return Scaffold(
       extendBodyBehindAppBar: true,
       body: SafeArea(
@@ -100,20 +99,22 @@ class HomeScreenState extends ConsumerState<HomeScreen> {
           },
         ),
       ),
-      bottomNavigationBar: AnimatedBottomBar(
-        backgroundColor: themeController.darkTheme ? BrandColors.black : BrandColors.kColorBackground,
-        onItemTap: (index) {
-          _controller.animateToPage(
-            index,
-            duration: const Duration(milliseconds: 150),
-            curve: Curves.easeInOut,
-          );
-        },
-        barItems: barItems,
-        currBarItem: selectedBottomBarIndex,
-        animationDuration: const Duration(milliseconds: 150),
-        elevation: 15,
-      ),
+      bottomNavigationBar: Obx(() {
+        return AnimatedBottomBar(
+          backgroundColor: !themeController.isLightTheme ? BrandColors.black : BrandColors.kColorBackground,
+          onItemTap: (index) {
+            _controller.animateToPage(
+              index,
+              duration: const Duration(milliseconds: 150),
+              curve: Curves.easeInOut,
+            );
+          },
+          barItems: barItems,
+          currBarItem: selectedBottomBarIndex,
+          animationDuration: const Duration(milliseconds: 150),
+          elevation: 15,
+        );
+      }),
     );
   }
 }

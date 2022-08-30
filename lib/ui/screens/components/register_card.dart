@@ -1,7 +1,9 @@
+import 'package:dartz/dartz.dart' as dartz;
 import 'package:flutter/material.dart';
+import 'package:line_awesome_flutter/line_awesome_flutter.dart';
 import 'package:projectwork/index.dart';
 
-class RegisterCard extends StatelessWidget {
+class RegisterCard extends StatefulWidget {
   final double registerYOffset;
   final double registerHeight;
   final void Function() onTap;
@@ -14,6 +16,28 @@ class RegisterCard extends StatelessWidget {
   }) : super(key: key);
 
   @override
+  State<RegisterCard> createState() => _RegisterCardState();
+}
+
+class _RegisterCardState extends State<RegisterCard> {
+  final TextEditingController _emailController = TextEditingController();
+  final TextEditingController _passwordController = TextEditingController();
+  final TextEditingController _firstNameController = TextEditingController();
+  final TextEditingController _lastNameController = TextEditingController();
+  final TextEditingController _phoneNumberController = TextEditingController();
+
+  bool _passwordVisible = false;
+
+  // focus node
+  late FocusNode currentFocus;
+
+  @override
+  void initState() {
+    _passwordVisible = false;
+    super.initState();
+  }
+
+  @override
   Widget build(BuildContext context) {
     return AnimatedContainer(
       curve: Curves.fastLinearToSlowEaseIn,
@@ -21,10 +45,10 @@ class RegisterCard extends StatelessWidget {
         milliseconds: 1000,
       ),
       width: double.infinity,
-      height: registerHeight,
+      height: widget.registerHeight,
       transform: Matrix4.translationValues(
         0,
-        registerYOffset,
+        widget.registerYOffset,
         1,
       ),
       decoration: BoxDecoration(
@@ -43,42 +67,124 @@ class RegisterCard extends StatelessWidget {
             children: <Widget>[
               //input fields
               Column(
-                children: const <Widget>[
+                children: <Widget>[
                   InputField(
                     title: "First Name",
-                    icon: Icons.person,
+                    icon: LineAwesomeIcons.user,
+                    controller: _firstNameController,
                   ),
-                  SizedBox(height: 20.0),
+                  const SizedBox(height: 20.0),
                   InputField(
                     title: "Last Name",
-                    icon: Icons.person,
+                    icon: LineAwesomeIcons.user,
+                    controller: _lastNameController,
                   ),
-                  SizedBox(height: 20.0),
+                  const SizedBox(height: 20.0),
                   InputField(
                     title: "Email Address",
-                    icon: Icons.email,
+                    icon: LineAwesomeIcons.envelope,
+                    keyboardType: TextInputType.emailAddress,
+                    controller: _emailController,
                   ),
-                  SizedBox(height: 20.0),
+                  const SizedBox(height: 20.0),
                   InputField(
                     title: "Phone Number",
-                    icon: Icons.call,
+                    icon: LineAwesomeIcons.phone,
+                    keyboardType: TextInputType.number,
+                    controller: _phoneNumberController,
                   ),
-                  SizedBox(height: 20.0),
+                  const SizedBox(height: 20.0),
                   InputField(
                     title: "Password",
-                    icon: Icons.vpn_key,
+                    icon: LineAwesomeIcons.key,
+                    controller: _passwordController,
+                    obscureText: !_passwordVisible,
+                    suffixIcon: _passwordVisible ? LineAwesomeIcons.eye_slash : LineAwesomeIcons.eye,
+                    onTap: () {
+                      setState(() {
+                        _passwordVisible = !_passwordVisible;
+                      });
+                    },
                   ),
-                  SizedBox(height: 20.0),
+                  const SizedBox(height: 20.0),
                 ],
               ),
 
-              const SizedBox(height: 20.0),
+              const SizedBox(height: 100.0),
               // buttons
               Column(
                 children: <Widget>[
                   GestureDetector(
-                    onTap: () {
-                      Navigator.pushNamedAndRemoveUntil(context, ProfilePage.id, (route) => false);
+                    onTap: () async {
+                      currentFocus = FocusScope.of(context);
+                      HelperFunctions.unFocus(context, currentFocus);
+
+                      // get all the values from the text edit controllers
+                      final String firstName = _firstNameController.text.trim();
+                      final String lastName = _lastNameController.text.trim();
+                      final String email = _emailController.text.trim().toLowerCase();
+                      final String phoneNumber = _phoneNumberController.text.trim();
+                      final String password = _passwordController.text.trim().toString();
+
+                      // validate form
+                      if (email.isEmpty) {
+                        // show snackBar
+                        showCustomFlushBar(
+                          context: context,
+                          title: "Invalid email address",
+                          messageText: "Please provide a valid email address",
+                          icon: LineAwesomeIcons.exclamation_circle,
+                          backgroundColor: !themeController.isLightTheme ? BrandColors.colorDarkBlue : BrandColors.colorDarkTheme,
+                          iconColor: BrandColors.kColorWhiteAccent,
+                          titleColor: BrandColors.kColorWhiteAccent,
+                          messageColor: BrandColors.kColorWhiteAccent,
+                        );
+                        return;
+                      }
+                      if (!email.contains("@")) {
+                        // show snackBar
+                        showCustomFlushBar(
+                          context: context,
+                          title: "Invalid email address",
+                          messageText: "Please provide a valid email address",
+                          icon: LineAwesomeIcons.exclamation_circle,
+                          backgroundColor: !themeController.isLightTheme ? BrandColors.colorDarkBlue : BrandColors.colorDarkTheme,
+                          iconColor: BrandColors.kColorWhiteAccent,
+                          titleColor: BrandColors.kColorWhiteAccent,
+                          messageColor: BrandColors.kColorWhiteAccent,
+                        );
+                        return;
+                      }
+                      if (password.length < 8) {
+                        // show snackBar
+                        showCustomFlushBar(
+                          context: context,
+                          title: "Weak Password",
+                          messageText: "Password must be at least 8 characters",
+                          icon: LineAwesomeIcons.exclamation_circle,
+                          backgroundColor: !themeController.isLightTheme ? BrandColors.colorDarkBlue : BrandColors.colorDarkTheme,
+                          iconColor: BrandColors.kColorWhiteAccent,
+                          titleColor: BrandColors.kColorWhiteAccent,
+                          messageColor: BrandColors.kColorWhiteAccent,
+                        );
+                        return;
+                      }
+
+                      // show progress dialog
+                      // showDialog(
+                      //   barrierDismissible: false,
+                      //   context: context,
+                      //   builder: (BuildContext context) => const ProgressDialog(status: "Please Wait..."),
+                      // );
+
+                      // Navigator.pushNamedAndRemoveUntil(context, HomeScreen.id, (route) => false);
+                      _registerUser(
+                        firstName: firstName,
+                        lastName: lastName,
+                        email: email,
+                        phoneNumber: phoneNumber,
+                        password: password,
+                      );
                     },
                     child: const BrandButton(
                       title: "Create Account",
@@ -86,17 +192,59 @@ class RegisterCard extends StatelessWidget {
                   ),
                   const SizedBox(height: 20.0),
                   GestureDetector(
-                    onTap: onTap,
+                    onTap: widget.onTap,
                     child: const TransparentButton(
                       title: "Log In",
                     ),
                   ),
                 ],
               ),
+              const SizedBox(height: 20.0),
             ],
           ),
         ),
       ),
     );
+  }
+
+  void _registerUser({
+    required String firstName,
+    required String lastName,
+    required String password,
+    required String email,
+    required String phoneNumber,
+  }) async {
+    // show progress dialog
+    showDialog(
+      barrierDismissible: false,
+      context: context,
+      builder: (BuildContext context) => const ProgressDialog(status: "Please Wait..."),
+    );
+    // register a new firebase user with email and password
+    dartz.Either<Failure, UserModel> response = await authRepo.registerWithEmailAndPassword(
+      email: email,
+      password: password,
+      firstName: firstName,
+      lastName: lastName,
+      phoneNumber: phoneNumber,
+    );
+    // if the response is a success, then navigate to the home screen
+    if (response.isRight()) {
+      userController.initUser();
+
+      // get the UserModel from the response
+      response.fold(
+        (exception) => debugPrint(exception.message.toString()),
+        // update current user info
+        (userModel) => userController.updateCurrentUserInfo(userModel),
+      );
+      // check if user is logged in
+      if (userController.isUserLoggedIn) {
+        if (mounted) {}
+        // navigate to the home screen
+        Navigator.pushNamedAndRemoveUntil(context, HomeScreen.id, (route) => false);
+      }
+    }
+    return;
   }
 }

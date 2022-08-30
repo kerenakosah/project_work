@@ -1,3 +1,4 @@
+/// Exporting all the files in the lib folder.
 export 'components/index.dart';
 export 'home_page.dart';
 export 'patient_page.dart';
