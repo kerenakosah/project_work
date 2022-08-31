@@ -1,5 +1,6 @@
 import 'package:flutter/material.dart';
 import 'package:projectwork/index.dart';
+import 'package:projectwork/ui/screens/login_screen.dart';
 import 'package:shimmer/shimmer.dart';
 
 class SplashScreen extends StatefulWidget {
@@ -19,7 +20,7 @@ class _SplashScreenState extends State<SplashScreen> {
       if (userController.isUserLoggedIn) {
         Navigator.pushNamedAndRemoveUntil(context, HomeScreen.id, (route) => false);
       } else {
-        Navigator.pushNamedAndRemoveUntil(context, BoardingScreen.id, (route) => false);
+        Navigator.pushNamedAndRemoveUntil(context, LoginScreen.id, (route) => false);
       }
     });
   }

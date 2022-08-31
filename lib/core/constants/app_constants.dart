@@ -1,6 +1,6 @@
 class AppData {
   const AppData._();
 
-  static const title = "Lorem Ipsum";
-  static const descriptionText = "Lorem ipsum dolor sit amet, Lorem ipsum dolor sit amet, Lorem ipsum dolor sit amet.";
+  static const title = "False safe";
+  static const descriptionText = "This app is specifically designed to get candidate help when a fall event occrs.";
 }

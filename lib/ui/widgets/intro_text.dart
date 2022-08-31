@@ -23,9 +23,10 @@ class IntroText extends StatelessWidget {
               onTap: onTap,
               child: Text(
                 AppData.title,
+                maxLines: 3,
                 style: GoogleFonts.nunito(
                   color: textColor,
-                  fontSize: 28.0,
+                  fontSize: 36.0,
                   fontWeight: FontWeight.w900,
                 ),
               ),
@@ -38,9 +39,12 @@ class IntroText extends StatelessWidget {
             padding: const EdgeInsets.all(12.0),
             child: Text(
               AppData.descriptionText,
+              maxLines: 4,
               textAlign: TextAlign.center,
               style: GoogleFonts.nunito(
                 color: textColor,
+                fontSize: 20.0,
+                fontWeight: FontWeight.w500,
               ),
             ),
           ),

@@ -1,4 +1,4 @@
-// functionalities
+import 'package:flutter/material.dart';
 import 'package:geolocator/geolocator.dart';
 import 'package:google_maps_flutter/google_maps_flutter.dart';
 import 'package:projectwork/index.dart';
@@ -31,3 +31,6 @@ AuthRepo authRepo = AuthRepo();
 // controllers
 ThemeController themeController = ThemeController.instance;
 UserController userController = UserController.instance;
+
+// home screen page controller
+late PageController controller;

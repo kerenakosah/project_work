@@ -12,7 +12,6 @@ Future<void> main() async {
   FlutterNativeSplash.preserve(widgetsBinding: widgetsBinding);
   // initialize firebase
   await Firebase.initializeApp(
-    name: BrandStrings.appName.toString(),
     options: DefaultFirebaseOptions.currentPlatform,
   );
   // initialize services
@@ -34,6 +33,7 @@ class _CustomAppState extends State<CustomApp> {
   void initState() {
     FlutterNativeSplash.remove();
     themeController.initTheme();
+    userController.initUser();
     super.initState();
   }
 
@@ -57,12 +57,16 @@ class _CustomAppState extends State<CustomApp> {
               // screens
               SplashScreen.id: (context) => const SplashScreen(),
               HomeScreen.id: (context) => const HomeScreen(),
-              BoardingScreen.id: (context) => const BoardingScreen(),
               // pages
               HomePage.id: (context) => const HomePage(),
               ProfilePage.id: (context) => const ProfilePage(),
               SettingsPage.id: (context) => const SettingsPage(),
               PatientPage.id: (context) => const PatientPage(),
+              LoginScreen.id: (context) => const LoginScreen(),
+              RegisterScreen.id: (context) => const RegisterScreen(),
+
+              // view
+              MapView.id: (context) => const MapView(),
             },
           ),
         );

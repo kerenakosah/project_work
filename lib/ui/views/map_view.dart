@@ -7,6 +7,7 @@ import 'package:projectwork/index.dart';
 
 ///  Created by mia on 8/25/2022.
 class MapView extends StatefulWidget {
+  static const String id = "map_view";
   const MapView({Key? key}) : super(key: key);
 
   @override
@@ -54,6 +55,11 @@ class _MapViewState extends State<MapView> {
   Widget build(BuildContext context) {
     return Scaffold(
       key: _scaffoldKey,
+      appBar: AppBar(
+        backgroundColor: Colors.transparent,
+        elevation: 0.0,
+        iconTheme: const IconThemeData(color: Colors.black),
+      ),
       body: SafeArea(
         child: Stack(
           children: <Widget>[
@@ -99,6 +105,8 @@ class _MapViewState extends State<MapView> {
                     ),
                   )
                 : Container(),
+
+            // add markers of active patients
           ],
         ),
       ),

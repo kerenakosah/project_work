@@ -1,5 +1,5 @@
 import 'package:flutter/material.dart';
-import 'package:get/get_state_manager/src/rx_flutter/rx_obx_widget.dart';
+import 'package:get/get.dart';
 import 'package:line_awesome_flutter/line_awesome_flutter.dart';
 import 'package:projectwork/index.dart';
 
@@ -14,7 +14,6 @@ class HomeScreen extends StatefulWidget {
 }
 
 class _HomeScreen extends State<HomeScreen> {
-  late PageController _controller;
   int selectedBottomBarIndex = 0;
   bool _isMapLoading = false;
   late List<Widget> pages;
@@ -30,8 +29,10 @@ class _HomeScreen extends State<HomeScreen> {
 
   @override
   void initState() {
-    _controller = PageController(initialPage: selectedBottomBarIndex);
+    controller = PageController(initialPage: selectedBottomBarIndex);
     future = _loadViews();
+    userController.initUser();
+    HelperMethods.instance.fetchUserProfile();
     pages = const [
       HomePage(),
       PatientPage(),
@@ -65,7 +66,7 @@ class _HomeScreen extends State<HomeScreen> {
 
   @override
   void dispose() {
-    _controller.dispose();
+    controller.dispose();
     super.dispose();
   }
 
@@ -87,7 +88,7 @@ class _HomeScreen extends State<HomeScreen> {
                     selectedBottomBarIndex = index;
                   });
                 },
-                controller: _controller,
+                controller: controller,
                 itemBuilder: (context, index) => pages[index],
               );
             }
@@ -99,11 +100,11 @@ class _HomeScreen extends State<HomeScreen> {
           },
         ),
       ),
-      bottomNavigationBar: Obx(() {
-        return AnimatedBottomBar(
+      bottomNavigationBar: Obx(
+        () => AnimatedBottomBar(
           backgroundColor: !themeController.isLightTheme ? BrandColors.black : BrandColors.kColorBackground,
           onItemTap: (index) {
-            _controller.animateToPage(
+            controller.animateToPage(
               index,
               duration: const Duration(milliseconds: 150),
               curve: Curves.easeInOut,
@@ -113,8 +114,8 @@ class _HomeScreen extends State<HomeScreen> {
           currBarItem: selectedBottomBarIndex,
           animationDuration: const Duration(milliseconds: 150),
           elevation: 15,
-        );
-      }),
+        ),
+      ),
     );
   }
 }

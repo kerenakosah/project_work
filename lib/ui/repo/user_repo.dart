@@ -57,6 +57,7 @@ class UserRepo {
       path: FirestorePaths.userDocument(userId),
       builder: (data, docId) {
         if (data != null) {
+          // debugPrint("data from firebase $docId $data");
           userModel = UserModel.fromMap(data, docId!);
           return userModel!;
         }

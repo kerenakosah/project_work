@@ -1,6 +1,5 @@
 import 'package:auto_size_text/auto_size_text.dart';
 import 'package:flutter/material.dart';
-import 'package:get/get_state_manager/src/rx_flutter/rx_obx_widget.dart';
 import 'package:google_fonts/google_fonts.dart';
 import 'package:projectwork/index.dart';
 
@@ -119,41 +118,39 @@ class AnimatedBarItemState extends State<AnimatedBarItem> with TickerProviderSta
         onTap: () {
           widget.onItemTap(widget.thisItemIndex);
         },
-        child: Obx(() {
-          return Row(
-            children: <Widget>[
-              Icon(
-                widget.barItem.icon,
-                // color: widget.isSelected ? widget.barItem.color : Colors.black,
-                // if the item is selected show the item color otherwise if the item is not selected then check for the active theme
-                color: widget.isSelected
-                    ? widget.barItem.color
-                    : !themeController.isLightTheme
-                        ? BrandColors.white
-                        : BrandColors.black,
-                size: widget.barItem.iconSize,
-              ),
-              const SizedBox(width: 5.0),
-              AnimatedSize(
-                curve: Curves.easeInOut,
-                duration: widget.animationDuration,
-                child: LimitedBox(
-                  maxWidth: 100.0,
-                  child: AutoSizeText(
-                    widget.isSelected ? "${widget.barItem.text}" : "",
-                    style: GoogleFonts.montserrat(
-                      color: widget.barItem.color,
-                      fontWeight: FontWeight.w600,
-                      fontSize: widget.barItem.textSize,
-                    ),
-                    maxFontSize: widget.barItem.textSize!,
-                    maxLines: 1,
+        child: Row(
+          children: <Widget>[
+            Icon(
+              widget.barItem.icon,
+              // color: widget.isSelected ? widget.barItem.color : Colors.black,
+              // if the item is selected show the item color otherwise if the item is not selected then check for the active theme
+              color: widget.isSelected
+                  ? widget.barItem.color
+                  : !themeController.isLightTheme
+                      ? BrandColors.white
+                      : BrandColors.black,
+              size: widget.barItem.iconSize,
+            ),
+            const SizedBox(width: 5.0),
+            AnimatedSize(
+              curve: Curves.easeInOut,
+              duration: widget.animationDuration,
+              child: LimitedBox(
+                maxWidth: 100.0,
+                child: AutoSizeText(
+                  widget.isSelected ? "${widget.barItem.text}" : "",
+                  style: GoogleFonts.montserrat(
+                    color: widget.barItem.color,
+                    fontWeight: FontWeight.w600,
+                    fontSize: widget.barItem.textSize,
                   ),
+                  maxFontSize: widget.barItem.textSize!,
+                  maxLines: 1,
                 ),
-              )
-            ],
-          );
-        }),
+              ),
+            )
+          ],
+        ),
       ),
     );
   }

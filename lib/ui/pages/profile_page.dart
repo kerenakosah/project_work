@@ -1,4 +1,5 @@
 import 'package:animated_theme_switcher/animated_theme_switcher.dart';
+import 'package:firebase_auth/firebase_auth.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_screenutil/flutter_screenutil.dart';
 import 'package:flutter_svg/svg.dart';
@@ -58,20 +59,24 @@ class _ProfilePageState extends State<ProfilePage> {
               ),
             ),
             SizedBox(height: kSpacingUnit.w * 2),
-            CustomText(
-              text: "Keren Akosah",
-              color: !themeController.isLightTheme ? BrandColors.kColorWhiteAccent : BrandColors.black,
-              fontWeight: FontWeight.w700,
-              fontSize: 22.0,
-              maxLines: 2,
+            Obx(
+              () => CustomText(
+                text: "${userController.currentUserInfo.firstName ?? "User"} ${userController.currentUserInfo.lastName ?? "Name"}",
+                color: !themeController.isLightTheme ? BrandColors.kColorWhiteAccent : BrandColors.black,
+                fontWeight: FontWeight.w700,
+                fontSize: 22.0,
+                maxLines: 2,
+              ),
             ),
             SizedBox(height: kSpacingUnit.w * 0.5),
-            CustomText(
-              text: "kerenakosah@gmail.com",
-              color: !themeController.isLightTheme ? BrandColors.kColorWhiteAccent : BrandColors.black,
-              fontWeight: FontWeight.w500,
-              fontSize: 18.0,
-              maxLines: 2,
+            Obx(
+              () => CustomText(
+                text: userController.currentUserInfo.email ?? "johndoe@email.com",
+                color: !themeController.isLightTheme ? BrandColors.kColorWhiteAccent : BrandColors.black,
+                fontWeight: FontWeight.w500,
+                fontSize: 18.0,
+                maxLines: 2,
+              ),
             ),
             SizedBox(height: kSpacingUnit.w * 2),
           ],
@@ -113,18 +118,10 @@ class _ProfilePageState extends State<ProfilePage> {
                   Expanded(child: Container()),
                   ProfileListItem(
                     onPressed: () async {
-                      // authRepo.signOut();
-                      // userController.initUser();
-                      // if (!userController.isUserLoggedIn) {
-                      //   Navigator.pushNamedAndRemoveUntil(
-                      //     context,
-                      //     BoardingScreen.id,
-                      //     (route) => false,
-                      //   );
-                      // }
+                      FirebaseAuth.instance.signOut();
                       Navigator.pushNamedAndRemoveUntil(
                         context,
-                        BoardingScreen.id,
+                        LoginScreen.id,
                         (route) => false,
                       );
                     },
